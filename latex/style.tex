@@ -13,21 +13,27 @@
 \newcommand{\ResumeLineSpread}{0.94}
 \newcommand{\TitleNameSize}{26}
 \newcommand{\TitleNameLeading}{27}
-\newcommand{\SectionTopGap}{0.95em}
-\newcommand{\SectionBottomGap}{1.0em}
+\newcommand{\TitleRuleGapAbove}{0.10em}
+\newcommand{\TitleRuleGapBelow}{0.34em}
+\newcommand{\TitleContactGapBelow}{0.38em}
+\newcommand{\SectionTopGap}{1.35em}
+\newcommand{\SectionBottomGap}{0.8em}
 \newcommand{\EntryBottomPullup}{-1.0em}
 \newcommand{\EntryListTopPullup}{-0.25em}
-\newcommand{\CoreLabelWidth}{0.30\textwidth}
+\newcommand{\CoreLabelWidth}{0.32\textwidth}
 \newcommand{\CoreRowStretch}{0.96}
-\newcommand{\CoreRowBottomPullup}{-0.05em}
+\newcommand{\CoreRowBottomPullup}{0.05em}
 \newcommand{\ResumeBulletSize}{\fontsize{4.6}{4.6}\selectfont}
 \newcommand{\ResumeBulletGlyph}{{\ResumeBulletSize\textbullet}}
-\newcommand{\CoreTextSize}{\fontsize{8.9}{10.0}\selectfont}
-\newcommand{\ListItemSep}{0.5pt}
-\newcommand{\ListTopSep}{0pt}
-\newcommand{\ListParseSep}{0pt}
-\newcommand{\ListPartTopSep}{0pt}
+\newcommand{\CoreTextSize}{\fontsize{9.2}{10.4}\selectfont}
+\newcommand{\ListItemSep}{1.0pt}
+\newcommand{\ListBlockSep}{0pt}
 \newcommand{\ListLeftMargin}{0.9em}
+
+% --- Theme toggle ---
+% Set to \ResumeDarktrue for dark mode, \ResumeDarkfalse for light mode.
+\newif\ifResumeDark
+\ResumeDarkfalse
 
 % Prefer a modern, distinctive font stack while keeping safe fallbacks.
 \IfFileExists{/Library/Fonts/Aptos.ttf}{
@@ -44,30 +50,37 @@
 }
 
 \definecolor{ResumeAccent}{HTML}{39A5B7}
-\definecolor{ResumeText}{HTML}{D6D8DA}
-\definecolor{ResumeBg}{HTML}{1F2228}
-\definecolor{ResumeMuted}{HTML}{A9B0B8}
+\ifResumeDark
+  \definecolor{ResumeText}{HTML}{D6D8DA}
+  \definecolor{ResumeBg}{HTML}{1F2228}
+  \definecolor{ResumeMuted}{HTML}{A9B0B8}
+\else
+  \definecolor{ResumeText}{HTML}{1F2228}
+  \definecolor{ResumeBg}{HTML}{FFFFFF}
+  \definecolor{ResumeMuted}{HTML}{6E7681}
+\fi
 
 \linespread{\ResumeLineSpread}\selectfont
 \pagecolor{ResumeBg}
 \color{ResumeText}
+\raggedright
 \hypersetup{colorlinks=true,urlcolor=ResumeText,linkcolor=ResumeText}
 \renewcommand{\labelitemi}{\textcolor{ResumeMuted}{\ResumeBulletGlyph}}
 \setlength{\itemsep}{\ListItemSep}
-\setlength{\topsep}{\ListTopSep}
-\setlength{\parsep}{\ListParseSep}
-\setlength{\partopsep}{\ListPartTopSep}
+\setlength{\topsep}{\ListBlockSep}
+\setlength{\parsep}{\ListBlockSep}
+\setlength{\partopsep}{\ListBlockSep}
 \setlength{\leftmargini}{\ListLeftMargin}
 \setlength{\leftmargin}{\ListLeftMargin}
 
 % --- Reusable presentation macros ---
 \newcommand{\titlebar}[2]{%
   {\fontsize{\TitleNameSize}{\TitleNameLeading}\selectfont\bfseries\color{ResumeAccent} #1}\par
-  \vspace{0.25em}
+  \vspace{\TitleRuleGapAbove}
   \textcolor{ResumeAccent}{\rule{\linewidth}{0.6pt}}\par
-  \vspace{0.18em}
+  \vspace{\TitleRuleGapBelow}
   {\small #2}\par
-  \vspace{0.38em}
+  \vspace{\TitleContactGapBelow}
 }
 
 \newcommand{\ressection}[1]{%
@@ -79,7 +92,9 @@
 \newcommand{\entry}[4]{
   \nopagebreak[3]
   \begin{tabularx}{\textwidth}{@{}Xr@{}}
-    {\bfseries\MakeUppercase{#1 \textbar{} #2 \textbar{} #3}} & {\bfseries #4} \\
+    {\bfseries\MakeUppercase{#1%
+      \if\relax\detokenize{#2}\relax\else\space\textbar\space #2\fi%
+      \if\relax\detokenize{#3}\relax\else\space\textbar\space #3\fi}} & {\bfseries #4} \\
   \end{tabularx}
   \vspace{\EntryBottomPullup}
   \nopagebreak[3]
@@ -98,11 +113,11 @@
 \newenvironment{entryitems}{%
   \vspace{\EntryListTopPullup}
   \begin{itemize}
-    \setlength{\topsep}{\ListTopSep}
-    \setlength{\partopsep}{\ListPartTopSep}
-    \setlength{\parskip}{0pt}
+    \setlength{\topsep}{\ListBlockSep}
+    \setlength{\partopsep}{\ListBlockSep}
+    \setlength{\parskip}{\ListBlockSep}
     \setlength{\itemsep}{\ListItemSep}
-    \setlength{\parsep}{\ListParseSep}
+    \setlength{\parsep}{\ListBlockSep}
 }{%
   \end{itemize}
 }

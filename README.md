@@ -13,15 +13,29 @@ Version-controlled resume workspace.
 Compile from repo root:
 
 ```bash
-/Library/TeX/texbin/xelatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
+make build
 ```
 
-Run twice for stable references/bookmarks:
+This creates:
 
-```bash
-/Library/TeX/texbin/xelatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
-/Library/TeX/texbin/xelatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
-```
+- `output/Travis_Truax_2026_update.pdf` (engine output)
+- `output/TravisTruax_draft.pdf` (working draft)
 
 Note: The template is configured for `Cambria` when available. If Cambria is not
 installed, it falls back to `Times New Roman`.
+
+## Release
+
+Create a release PDF, then commit and push in one step:
+
+```bash
+make release MSG="short summary of changes"
+```
+
+This will:
+
+- rebuild the resume
+- update `output/TravisTruax_draft.pdf`
+- copy draft to `output/TravisTruax.pdf` (release file)
+- create a git commit with date + your summary
+- push to remote
