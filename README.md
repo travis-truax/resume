@@ -36,6 +36,7 @@ This will:
 
 - rebuild the resume
 - update `output/TravisTruax_draft.pdf`
-- copy draft to `output/TravisTruax.pdf` (release file)
+- remove legacy `output/TravisTruax.pdf` if present
+- copy draft to `TravisTruax.pdf` at repo root (release file)
 - create a git commit with date + your summary
 - push to remote
