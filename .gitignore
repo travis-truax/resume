@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# LaTeX build intermediates
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Keep compiled PDFs only in output/
+*.pdf
+!output/*.pdf

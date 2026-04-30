@@ -1,0 +1,128 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.6in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+\definecolor{ResumeBlue}{HTML}{1F4E79}
+\definecolor{TitleBarText}{HTML}{FFFFFF}
+
+\newcommand{\titlebar}[2]{%
+  % Full-width colored header bar (match Word-style title band)
+  \begingroup
+  \setlength{\fboxsep}{7pt}%
+  \noindent\colorbox{ResumeBlue}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+      {\Large\bfseries\color{TitleBarText} #1}\par\vspace{1pt}%
+      {\footnotesize\color{TitleBarText} #2}%
+    }%
+  }%
+  \par\vspace{0.35em}%
+  \endgroup
+}
+
+\newcommand{\ressection}[1]{%
+  \vspace{0.55em}%
+  {\large\bfseries\color{ResumeBlue} #1}\par
+  \vspace{0.15em}\hrule\vspace{0.25em}%
+}
+
+\newcommand{\entry}[4]{
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} \textbar{} #2 \textbar{} #3 & #4 \\
+  \end{tabularx}
+}
+
+\begin{document}
+
+\titlebar
+  {Travis Truax}
+  {503-298-8183 \textbar{} \href{mailto:TravisTruax96@gmail.com}{TravisTruax96@gmail.com} \textbar{} \href{https://linkedin.com/in/travis-truax/}{linkedin.com/in/travis-truax/}}
+
+\ressection{Professional Summary}
+Senior Software Engineer with 6+ years of experience designing and operating distributed, event-driven systems in AWS. Proven track record of building high-volume microservices, leading critical production systems, and driving large-scale platform and regulatory migrations. Strong background in cloud infrastructure, backend development, and reliability engineering within global trade and customs domains.
+
+\ressection{Core Competencies}
+\begin{itemize}
+  \item \textbf{Distributed Systems:} Event-driven microservices, asynchronous workflows, fault-tolerant system design
+  \item \textbf{AWS Cloud:} Serverless and container-based architecture (Lambda, API Gateway, DynamoDB, S3, EC2, EKS)
+  \item \textbf{Backend Development:} Python, REST APIs, asynchronous processing, workflow orchestration (Step Functions)
+  \item \textbf{Infrastructure \& DevOps:} Terraform, CI/CD pipelines, Docker, Kubernetes (EKS, AKS), infrastructure-as-code
+  \item \textbf{Observability \& Reliability:} CloudWatch, Splunk, OpenTelemetry, distributed tracing, production incident response
+  \item \textbf{Data \& Integrations:} Event streaming, SQS/SNS, Kafka, external API integrations (E2Open, IBM, Box)
+  \item \textbf{Systems \& Networking:} Linux (Ubuntu), Windows Server, networking fundamentals, Cisco routing/switching
+  \item \textbf{Security:} Detection engineering, credential rotation, access control, Kerberos analysis
+\end{itemize}
+
+\ressection{Work Experience}
+\entry{Senior Software Engineer}{Nike Inc.}{Global Trade and Customs}{03/2021 -- 04/2026}
+\begin{itemize}
+  \item Owned design and operation of distributed, event-driven microservices in AWS supporting global trade, customs, and tariff processing systems
+  \item Led development of high-volume serverless workflows (Lambda, Step Functions) for purchase order and customs event processing, improving reliability and throughput
+  \item Delivered end-to-end trade content and estimated duty systems enabling multi-country tariff calculations and regulatory compliance
+  \item Implemented major regulatory changes (for example reciprocal tariffs and HTS updates) under tight timelines
+  \item Drove production reliability by diagnosing and resolving high-severity incidents, including classification outages, API failures, and vendor integration issues
+  \item Built observability with Splunk, CloudWatch, and OpenTelemetry to improve monitoring and debugging
+  \item Designed integrations with external vendors (E2Open, IBM, Box), including large-file processing and asynchronous pipelines
+  \item Contributed to platform migrations (SEC/S4HANA, NTN/NTS modernization) supporting global trade infrastructure evolution
+  \item Standardized infrastructure patterns using Terraform, EKS, and CI/CD pipelines to improve deployment consistency and engineering velocity
+  \item Served as interim Tech Lead, leading engineers and coordinating delivery during leadership transition
+\end{itemize}
+
+\entry{Cloud Engineer}{Nike Inc.}{Azure Engineering}{09/2020 -- 03/2021}
+\begin{itemize}
+  \item Queried Azure infrastructure with PowerShell
+  \item Built PowerShell runbooks to automate Azure resource deployment
+  \item Wrote PowerShell scripts to audit permissions across Azure resources
+\end{itemize}
+
+\entry{Cyber Security Analyst}{Nike Inc.}{Nike Cyber Defense Center}{03/2020 -- 09/2020}
+\begin{itemize}
+  \item Architected and built a serverless AWS solution to automate incident-ticket auditing
+  \item Built dashboards for security operations metrics and reporting
+  \item Led development of detections for Kerberos abuse and tuned dashboards to track malicious activity
+  \item Participated in Purple Team exercises to validate detection effectiveness
+\end{itemize}
+
+\entry{Software Engineer}{Nike Inc.}{Trade Team}{09/2019 -- 03/2020}
+\begin{itemize}
+  \item Built and managed AWS infrastructure with Terraform and developed Python REST APIs with Okta SSO
+  \item Helped design microservice architecture and implemented CI/CD practices with Jenkins
+  \item Delivered a one-stop endpoint for brokers to retrieve customs data and product details for filings
+\end{itemize}
+
+\entry{IT Infrastructure Intern}{George Fox University}{}{2017 -- 2019}
+\begin{itemize}
+  \item Supported IT infrastructure operations including configuration changes, installations, cabling, Wi-Fi testing, server-room upkeep, and troubleshooting
+\end{itemize}
+
+\entry{Heavy Haul Truck Driver}{Riverbrook Trucking}{}{2012 -- 2019}
+\begin{itemize}
+  \item Operated heavy transport under strict safety and regulatory constraints
+  \item Planned and executed legal transport of loads up to 16 ft wide, 16 ft high, and 250,000 lbs GVW across the Pacific Northwest
+\end{itemize}
+
+\ressection{Activities / Certifications}
+\entry{Pacific Region Collegiate Cyber Defense Competition}{Team Captain}{}{2018 -- 2019}
+\begin{itemize}
+  \item Served as Team Captain on George Fox's first Collegiate Cyber Defense Competition team and qualified for Regionals
+  \item Managed a team of 8 cybersecurity majors operating and hardening a corporate network under active attack simulations
+\end{itemize}
+
+\entry{Commercial Driver's License (Class A)}{Salem, OR}{}{2016 -- Present}
+
+\ressection{Education}
+\entry{George Fox University}{Newberg, OR}{Bachelor of Science, Computer Science (Cybersecurity Emphasis)}{2015 -- 2019}
+
+\ressection{Relevant Projects}
+\entry{Computer Vision for Agricultural Automation}{}{}{2018 -- 2019}
+\begin{itemize}
+  \item Developed a crop-identification system using computer vision in an interdisciplinary engineering project
+\end{itemize}
+
+\end{document}
