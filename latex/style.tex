@@ -1,0 +1,108 @@
+% Resume style and reusable layout macros.
+\usepackage[letterpaper,top=0.25in,bottom=0.25in,left=0.75in,right=0.75in]{geometry}
+\usepackage{fontspec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+
+% --- Global typography and spacing defaults ---
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+
+% --- Tunable layout constants (single source of truth) ---
+\newcommand{\ResumeLineSpread}{0.94}
+\newcommand{\TitleNameSize}{26}
+\newcommand{\TitleNameLeading}{27}
+\newcommand{\SectionTopGap}{0.95em}
+\newcommand{\SectionBottomGap}{1.0em}
+\newcommand{\EntryBottomPullup}{-1.0em}
+\newcommand{\EntryListTopPullup}{-0.25em}
+\newcommand{\CoreLabelWidth}{0.30\textwidth}
+\newcommand{\CoreRowStretch}{0.96}
+\newcommand{\CoreRowBottomPullup}{-0.05em}
+\newcommand{\ResumeBulletSize}{\fontsize{4.6}{4.6}\selectfont}
+\newcommand{\ResumeBulletGlyph}{{\ResumeBulletSize\textbullet}}
+\newcommand{\CoreTextSize}{\fontsize{8.9}{10.0}\selectfont}
+\newcommand{\ListItemSep}{0.5pt}
+\newcommand{\ListTopSep}{0pt}
+\newcommand{\ListParseSep}{0pt}
+\newcommand{\ListPartTopSep}{0pt}
+\newcommand{\ListLeftMargin}{0.9em}
+
+% Prefer a modern, distinctive font stack while keeping safe fallbacks.
+\IfFileExists{/Library/Fonts/Aptos.ttf}{
+  \setmainfont{Aptos}
+  \typeout{RESUME FONT: Aptos}
+}{
+  \IfFileExists{/Library/Fonts/SourceSerif4-Regular.otf}{
+    \setmainfont{Source Serif 4}
+    \typeout{RESUME FONT: Source Serif 4}
+  }{
+    \setmainfont{Times New Roman}
+    \typeout{RESUME FONT: Times New Roman}
+  }
+}
+
+\definecolor{ResumeAccent}{HTML}{39A5B7}
+\definecolor{ResumeText}{HTML}{D6D8DA}
+\definecolor{ResumeBg}{HTML}{1F2228}
+\definecolor{ResumeMuted}{HTML}{A9B0B8}
+
+\linespread{\ResumeLineSpread}\selectfont
+\pagecolor{ResumeBg}
+\color{ResumeText}
+\hypersetup{colorlinks=true,urlcolor=ResumeText,linkcolor=ResumeText}
+\renewcommand{\labelitemi}{\textcolor{ResumeMuted}{\ResumeBulletGlyph}}
+\setlength{\itemsep}{\ListItemSep}
+\setlength{\topsep}{\ListTopSep}
+\setlength{\parsep}{\ListParseSep}
+\setlength{\partopsep}{\ListPartTopSep}
+\setlength{\leftmargini}{\ListLeftMargin}
+\setlength{\leftmargin}{\ListLeftMargin}
+
+% --- Reusable presentation macros ---
+\newcommand{\titlebar}[2]{%
+  {\fontsize{\TitleNameSize}{\TitleNameLeading}\selectfont\bfseries\color{ResumeAccent} #1}\par
+  \vspace{0.25em}
+  \textcolor{ResumeAccent}{\rule{\linewidth}{0.6pt}}\par
+  \vspace{0.18em}
+  {\small #2}\par
+  \vspace{0.38em}
+}
+
+\newcommand{\ressection}[1]{%
+  \vspace{\SectionTopGap}%
+  {\Large\bfseries\color{ResumeAccent} #1}\par
+  \vspace{\SectionBottomGap}%
+}
+
+\newcommand{\entry}[4]{
+  \nopagebreak[3]
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    {\bfseries\MakeUppercase{#1 \textbar{} #2 \textbar{} #3}} & {\bfseries #4} \\
+  \end{tabularx}
+  \vspace{\EntryBottomPullup}
+  \nopagebreak[3]
+}
+
+\newcommand{\coreitem}[2]{%
+  {\renewcommand{\arraystretch}{\CoreRowStretch}%
+  \begin{tabularx}{\textwidth}{@{}>{\bfseries\raggedright\arraybackslash}p{\CoreLabelWidth}@{\hspace{0.2em}}X@{}}
+    {{\CoreTextSize\textcolor{ResumeMuted}{\ResumeBulletGlyph}~\MakeUppercase{#1}}} &
+    {{\CoreTextSize\textcolor{ResumeText}{\(\rightarrow\) #2}}} \\
+  \end{tabularx}
+  }%
+  \vspace{\CoreRowBottomPullup}
+}
+
+\newenvironment{entryitems}{%
+  \vspace{\EntryListTopPullup}
+  \begin{itemize}
+    \setlength{\topsep}{\ListTopSep}
+    \setlength{\partopsep}{\ListPartTopSep}
+    \setlength{\parskip}{0pt}
+    \setlength{\itemsep}{\ListItemSep}
+    \setlength{\parsep}{\ListParseSep}
+}{%
+  \end{itemize}
+}

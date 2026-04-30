@@ -13,12 +13,15 @@ Version-controlled resume workspace.
 Compile from repo root:
 
 ```bash
-/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
+/Library/TeX/texbin/xelatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
 ```
 
 Run twice for stable references/bookmarks:
 
 ```bash
-/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
-/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
+/Library/TeX/texbin/xelatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
+/Library/TeX/texbin/xelatex -interaction=nonstopmode -output-directory=output latex/Travis_Truax_2026_update.tex
 ```
+
+Note: The template is configured for `Cambria` when available. If Cambria is not
+installed, it falls back to `Times New Roman`.
